@@ -1,6 +1,9 @@
 # Stop Watch
 React, TypeScript でストップウォッチを作るぞ
 
+## 参考
+- [React timer hookでタイマーやストップウォッチを実装してみた | DevelopersIO](https://dev.classmethod.jp/articles/running-react-timer-hook/)
+
 ## フォント
 - [デジタル時計のようなセグメントを再現したフォント](https://at.sachi-web.com/blog-entry-1293.html)
 - [keshikan/DSEG: 7-segment and 14-segment font 7セグ・14セグフォント](https://github.com/keshikan/DSEG)
