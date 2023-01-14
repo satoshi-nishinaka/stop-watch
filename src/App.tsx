@@ -59,6 +59,9 @@ function App() {
                     }} />
                 </div>
             </section>
+            <footer>
+                <a className='App-link' href='https://github.com/satoshi-nishinaka/stop-watch'>satoshi-nishinaka/stop-watch</a>
+            </footer>
         </div>
     );
 }

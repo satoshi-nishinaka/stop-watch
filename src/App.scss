@@ -1,5 +1,7 @@
 @import "dseg/css/dseg.css";
-
+body {
+  background-color: #1e222a;
+}
 .App {
   text-align: center;
 
@@ -31,6 +33,7 @@
   &-link {
     color: #61dafb;
   }
+
   .main {
     background-color: #32363e;
   }
@@ -39,7 +42,7 @@
     display: inline-block;
     font-family: DSEG7-Classic;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 24px;
     line-height: 1.5;
     background-color: #1e222a;
     color: #40a040;
@@ -49,6 +52,7 @@
 
   .buttons {
     padding: 4px 0 32px;
+
     button {
       font-family: DSEG14-Modern;
       font-weight: bold;
@@ -60,6 +64,11 @@
       margin: 2px 4px;
       cursor: pointer;
     }
+  }
+
+  footer {
+    background-color: #282c34;
+    padding: 4px 0;
   }
 }
 
