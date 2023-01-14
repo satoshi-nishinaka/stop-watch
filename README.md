@@ -1,3 +1,12 @@
+# Stop Watch
+React, TypeScript でストップウォッチを作るぞ
+
+## フォント
+- [デジタル時計のようなセグメントを再現したフォント](https://at.sachi-web.com/blog-entry-1293.html)
+- [keshikan/DSEG: 7-segment and 14-segment font 7セグ・14セグフォント](https://github.com/keshikan/DSEG)
+
+----
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
