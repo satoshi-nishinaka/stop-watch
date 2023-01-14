@@ -6,19 +6,26 @@ const ResetButton = (): JSX.Element => {
     return (<button>RESET</button>)
 }
 
-const StartPauseButton = (props: {running: boolean}): JSX.Element => {
+const StartPauseButton = (props: {running: boolean, clickEvent: () => void}): JSX.Element => {
     if (!props.running) {
-        return (<button>START</button>)
+        return (<button onClick={props.clickEvent}>START</button>)
     }
 
-    return (<button>PAUSE</button>)
+    return (<button onClick={props.clickEvent}>PAUSE</button>)
 }
 
 const elapse = (running: boolean, startTime: number): string => {
     if (!running) {
         return '--:--:--';
     }
-    return '--:--:--';
+    const diff = Date.now() - startTime;
+    const hours = diff / 1000 / 60 / 60;
+    const minutes = (diff - hours * 3600000) / 1000 / 60;
+    const seconds = (diff - hours * 3600000 - minutes * 60000) / 1000;
+
+    return hours.toString().padStart(2, '0')
+        + ':' + minutes.toString().padStart(2, '0')
+        + ':' + seconds.toString().padStart(2, '0');
 }
 
 function App() {
@@ -37,7 +44,12 @@ function App() {
                     </div>
                 </div>
                 <div className='buttons'>
-                <ResetButton /><StartPauseButton running={running} />
+                <ResetButton /><StartPauseButton running={running} clickEvent={() => {
+                    if (!running) {
+                        setStartTime(Date.now())
+                    }
+                    setRunning(!running);
+                }} />
                 </div>
             </section>
         </div>
