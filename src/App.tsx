@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
+import {useStopwatch} from "react-timer-hook";
 
-const ResetButton = (): JSX.Element => {
-    return (<button>RESET</button>)
+const ResetButton = (props: {clickEvent:()=>void}): JSX.Element => {
+    return (<button onClick={props.clickEvent}>RESET</button>)
 }
 
 const StartPauseButton = (props: {running: boolean, clickEvent: () => void}): JSX.Element => {
@@ -14,14 +15,7 @@ const StartPauseButton = (props: {running: boolean, clickEvent: () => void}): JS
     return (<button onClick={props.clickEvent}>PAUSE</button>)
 }
 
-const elapse = (running: boolean, startTime: number): string => {
-    if (!running) {
-        return '--:--:--';
-    }
-    const diff = Date.now() - startTime;
-    const hours = diff / 1000 / 60 / 60;
-    const minutes = (diff - hours * 3600000) / 1000 / 60;
-    const seconds = (diff - hours * 3600000 - minutes * 60000) / 1000;
+    const elapse = (running: boolean, hours: number, minutes: number, seconds:number): string => {
 
     return hours.toString().padStart(2, '0')
         + ':' + minutes.toString().padStart(2, '0')
@@ -29,8 +23,15 @@ const elapse = (running: boolean, startTime: number): string => {
 }
 
 function App() {
-    const [startTime, setStartTime] = useState<number>(0)
-    const [running, setRunning] = useState(false)
+    const {
+        seconds,
+        minutes,
+        hours,
+        isRunning,
+        start,
+        pause,
+        reset
+    } = useStopwatch({autoStart: false});
 
     return (
         <div className="App">
@@ -40,16 +41,18 @@ function App() {
             <section className='main'>
                 <div>
                     <div className='timer'>
-                        {elapse(running, startTime)}
+                        {elapse(isRunning, hours, minutes, seconds)}
                     </div>
                 </div>
                 <div className='buttons'>
-                <ResetButton /><StartPauseButton running={running} clickEvent={() => {
-                    if (!running) {
-                        setStartTime(Date.now())
-                    }
-                    setRunning(!running);
-                }} />
+                    <ResetButton clickEvent={reset} />
+                    <StartPauseButton running={isRunning} clickEvent={() => {
+                        if (isRunning) {
+                            pause();
+                        } else {
+                            start()
+                        }
+                    }} />
                 </div>
             </section>
         </div>
